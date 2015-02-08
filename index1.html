@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="blogApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Jeina's Blog</title>
+		<meta name="description" content="this is jeina's blog">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all">
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="http://bs-static.cdn.telerik.com/1.0.0/everlive.images.min.js" type="text/javascript"></script>
+		<script src="https://bs-static.cdn.telerik.com/1.2.5/everlive.all.min.js" type="text/javascript"></script>
+		<script src="lib/angular.js" type="text/javascript"></script>
+		<script src="lib/angular-route.js" type="text/javascript"></script>
+
+		<script src="app.js" type="text/javascript"></script>
+		<script src="js/components/everlive-service/everlive-service.js" type="text/javascript"></script>
+		<script src="js/home/homeApp.js" type="text/javascript"></script>
+		<script src="js/details/detailsApp.js" type="text/javascript"></script>
+		<script src="js/search/searchApp.js" type="text/javascript"></script>
+		<script src="js/components/archive/archive.js" type="text/javascript"></script>
+		<script src="js/components/tagCloud/tagCloud.js" type="text/javascript"></script>
+
+	</head>
+	<body>
+ 		<header class="container">
+ 			<div class="row">
+
+ 				<div class="col-md-9">
+ 					<h1 class="text-center">Rouge & Esprit</h1></div>
+ 				<div class="col-md-3">
+ 					<nav>
+ 						<ul>
+ 							<li><a href="">About</a></li>
+ 							<li><a href="">Articles</a></li>
+ 						</ul>
+ 					</nav>
+ 				</div>
+
+ 			</div>
+ 		</header>
+ 		<section class="container">
+ 			<div class="row">
+
+ 				<div class="col-md-9">
+ 					<article>
+ 						<h1>First blog post</h1>
+ 						<p>Dones moles haras baas a pras jasta prasta karakasta.</p>
+ 					</article>
+ 				</div>
+ 				<div class="col-md-3">
+ 					<aside>
+						<h2>Epcot Center</h2>
+						<p class="text-muted"><em>The Epcot Center is a theme park in Disney World, Florida.</em></p>
+						<p class="text-muted"><em>&mdash; Joe Black</em></p>
+					</aside>
+ 				</div>
+
+ 			</div>
+ 		</section>
+		<script type="text/javascript">$("#toggleMenu").click(function () {
+			$(this).closest(".nav").toggleClass("nav-show");
+			everliveImages.init('fW5fEkhhplSXgaCS');
+		});</script>
+		</script>
+	</body>
+</html>
