@@ -1,70 +1,61 @@
 <!DOCTYPE html>
 <html ng-app="blogApp">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Jeina's Blog</title>
-        <meta name="description" content="this is jeina's blog">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-        <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-        <script src="http://bs-static.cdn.telerik.com/1.0.0/everlive.images.min.js" type="text/javascript"></script>
-        <script src="https://bs-static.cdn.telerik.com/1.2.5/everlive.all.min.js" type="text/javascript"></script>
-        <script src="lib/angular.js" type="text/javascript"></script>
-        <script src="lib/angular-route.js" type="text/javascript"></script>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Jeina's Blog</title>
+		<meta name="description" content="this is jeina's blog">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all">
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="http://bs-static.cdn.telerik.com/1.0.0/everlive.images.min.js" type="text/javascript"></script>
+		<script src="https://bs-static.cdn.telerik.com/1.2.5/everlive.all.min.js" type="text/javascript"></script>
+		<script src="lib/angular.js" type="text/javascript"></script>
+		<script src="lib/angular-route.js" type="text/javascript"></script>
 
-        <script src="app.js" type="text/javascript"></script>
-        <script src="js/components/everlive-service/everlive-service.js" type="text/javascript"></script>
-        <script src="js/home/homeApp.js" type="text/javascript"></script>
-        <script src="js/details/detailsApp.js" type="text/javascript"></script>
-        <script src="js/search/searchApp.js" type="text/javascript"></script>
-        <script src="js/components/archive/archive.js" type="text/javascript"></script>
-        <script src="js/components/tagCloud/tagCloud.js" type="text/javascript"></script>
+		<script src="app.js" type="text/javascript"></script>
+		<script src="js/components/everlive-service/everlive-service.js" type="text/javascript"></script>
+		<script src="js/home/homeApp.js" type="text/javascript"></script>
+		<script src="js/details/detailsApp.js" type="text/javascript"></script>
+		<script src="js/search/searchApp.js" type="text/javascript"></script>
+		<script src="js/components/archive/archive.js" type="text/javascript"></script>
+		<script src="js/components/tagCloud/tagCloud.js" type="text/javascript"></script>
 
-    </head>
-    <body>
-        <header>
-            <div class="container header centered">
-                <a style="display:block; position: relative;" href="#"><img alt="logo" src="images/2opit.png" height="1097" width="767" class="header-logo">
-                    <h1 class="header-text" style="color: #000; font-size:100px; position: absolute; top: 180px; left: 220px;"> Rouge & Esprit</h1></a>
-            </div>
-        </header>
-        <section class="main">
-            <nav class="nav">
-                <a id="toggleMenu" class="toggle"><p class="toggle-button"></p></a>
-                <ul class="centered capitalize main-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#/search/art">Art</a></li>
-                    <li><a href="#/search/crafts">Crafts</a></li>
-                    <li><a href="#/search/adventures">Adventures</a></li>
-                    <li><a href="#/search/food">Food</a></li>
-                    <li><a href="#/search/inspirations">Inspiration</a></li>
-                </ul>
-            </nav>
-            <div class="container clearfix">
-               
-                 <aside class="right-col width-35">
-                    <section class="margin-bottom-l intro">
-                        <figure>
-                            <img class="inline-block" src="images/jeni.png">
-                            <figcaption>I'm just a girl in the world!</figcaption>
-                        </figure>
-                    </section>
-                    <archive-widget></archive-widget>
-                    <tag-cloud></tag-cloud>
-                </aside>
-                <div ng-view></div>
+	</head>
+	<body>
+		<header class="banner">
+			<div class="container">
 
-            </div>
-        </section>
-        <footer class="padding-top-m padding-bottom-m centered">
-            <p>All rights reserved 2014</p>
-        </footer>
-        <script type="text/javascript">$("#toggleMenu").click(function () {
-            $(this).closest(".nav").toggleClass("nav-show");
-        	everliveImages.init('fW5fEkhhplSXgaCS');
-        });</script>
-        </script>
-    </body>
+				<h1 class="text-center">Rouge & Esprit</h1>
+
+				<nav class="list-horizontal">
+					<ul>
+						<li><a href="">About</a></li>
+					</ul>
+				</nav>
+
+			</div>
+		</header>
+		<section class="main container">
+
+			<div class="row">
+			   
+				<div ng-view></div>
+
+				<div class="row" style="display:none;">
+					<div class="col-md-2"></div>
+					<div class="col-md-10"> 
+						<a class="article-links" href="#">&mdash; More articles</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<script type="text/javascript">$("#toggleMenu").click(function () {
+			$(this).closest(".nav").toggleClass("nav-show");
+			everliveImages.init('fW5fEkhhplSXgaCS');
+		});</script>
+	</body>
 </html>

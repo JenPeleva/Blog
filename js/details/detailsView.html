@@ -1,22 +1,28 @@
-<article class="left-col width-65">
-    <header class="margin-bottom-s">
-        <time class="margin-bottom-s inline-block"><h2>{{ post.Date | date}}</h2></time>
-        <h1><a href="#">{{ post.Title }}</a></h1>
-    </header>
-    <article>
-        <div ng-bind-html="post.Content | sanitize"></div>
-        <!-- <figure>
-            <img src="images/mermaid.jpg">
-            <figcaption>These are some beautiful stickers, sent to me by my friend Dessy</figcaption>
-        </figure>
-        <figure>
-            <img src="images/flowers.jpg">
-            <figcaption>Flowers from my handsome boyfriend, who's so kind to help me out with the blog</figcaption>
-        </figure> -->
-    </article>
-    <ul class="post-tags inline-block margin-top-m">
-    	<li ng-repeat="tag in post.Tags">
-    		{{ tag }}
-    	</li>
-    </ul>
-</article>
+<div class="row">
+    <div class="col-md-2">
+        
+        <img src="css/Images/thmb-default.jpg" alt="thmb-default">
+        
+    </div>
+
+     <div class="col-md-7">
+        <a class="article-links" href="#">&mdash; All articles</a>
+
+         <article class="media">
+            <h1 class="media-heading">{{ post.Title }}</h1>
+
+            <div ng-bind-html="post.Content | sanitize">
+            </div>
+
+            <ul class="post-tags list-horizontal" style="display:none;">
+                <li ng-repeat="tag in post.Tags">
+                    {{ tag }}
+                </li>
+             </ul>
+
+         </article>
+
+          <a class="article-links" href="#">&mdash; All articles</a>
+     </div>
+     <div class="col-md-3"></div>
+</div>

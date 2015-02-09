@@ -1,9 +1,21 @@
+<div class="row">
+	<div class="col-md-9">
+		<article class="media" ng-repeat="bp in blogPosts">
 
-<ul class="left-col width-65">
-    <li ng-repeat="bp in blogPosts">
-        <h2><a href= "#/details/{{bp.Url}}" >{{bp.Title}}</a></h2>
-        <article>
-            <p>{{ bp.Content }}</p>
-        </article>
-    </li> 
-</ul>
+		    <div class="media-left">
+				<a href="#/details/{{bp.Url}}">
+					<img class="media-object" src="css/Images/thmb-default.jpg" alt="thmb-default">
+				</a>
+			</div>
+
+			<div class="media-body">
+				<a href="#/details/{{bp.Url}}"><h1 class="media-heading">{{bp.Title}}</h1></a>
+				<p class="text-muted">&mdash; Yesterday</p>
+				<p>{{ bp.Content }} <!-- Summary --></p>
+			</div>
+		    
+		</article>
+	</div>
+	<div class="col-md-3"><!-- Quote of the day --></div>
+</div>
+
