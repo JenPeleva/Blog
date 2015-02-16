@@ -7,6 +7,7 @@ var app = angular.module('blogApp', [
   'blogApp.home',
   'blogApp.details',
   'blogApp.search',
+  'blogApp.aboutme',
   'blogApp.quotes'
 ]).
 config(['$routeProvider', function($routeProvider) {
