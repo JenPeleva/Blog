@@ -19,3 +19,10 @@ app.filter("sanitize", ['$sce', function($sce) {
     return $sce.trustAsHtml(htmlCode);
   }
 }]);
+
+app.run(function($route, $rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function(event, next, current) {
+      var bannerClass = next.$$route.controller == 'homeController' ? 'banner' : 'banner-small'; // only the home page should have the big header picture
+      document.getElementById('headerPic').className = bannerClass;
+  });
+});
