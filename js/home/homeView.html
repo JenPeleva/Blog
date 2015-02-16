@@ -10,8 +10,8 @@
 
 			<div class="media-body">
 				<a href="#/details/{{bp.Url}}"><h1 class="media-heading">{{bp.Title}}</h1></a>
-				<p class="text-muted">&mdash; Yesterday</p>
-				<p>{{ bp.Content }} <!-- Summary --></p>
+				<p class="text-muted">&mdash; {{ bp.Date | date: 'd MMMM yyyy'}}</p>
+				<p>{{ bp.Summary }} <!-- Summary --></p>
 			</div>
 		    
 		</article>

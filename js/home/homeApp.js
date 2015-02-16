@@ -18,4 +18,11 @@
       		}
       	);
     });
+
+    homeApp.filter('formatDate', function(){
+        return function(input, url) {
+          
+          return input;
+        };
+    });
 })();
