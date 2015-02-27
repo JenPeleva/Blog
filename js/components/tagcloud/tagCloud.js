@@ -5,7 +5,6 @@
     tagCloudApp.controller('tagCloudController', function($scope, EverliveService) {
        	EverliveService.getTags().then(
           function(result) { 
-            console.log(result);
             $scope.tags = result;
           },
           function() {

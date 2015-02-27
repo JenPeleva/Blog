@@ -3,7 +3,7 @@
 		<article class="media" ng-repeat="bp in blogPosts">
 
 		    <div class="media-left">
-				<a href="#/details/{{bp.Url}}">
+				<a ui-sref="details({url : bp.Url})">
 					<img class="media-object" src="css/Images/thmb-default.jpg" alt="thmb-default">
 				</a>
 			</div>

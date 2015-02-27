@@ -6,6 +6,19 @@
         var blogPostData = el.data('BlogPost');
         var tagsData = el.data('Tags');
 
+
+        this.addNewComment = function addNewComment(blogPostId, newComment){
+            var deferred = $q.defer();
+            blogPostData.rawUpdate({'$push' : {'Comments' :  newComment }}, { 'Id': blogPostId},
+                function(data){
+                    deferred.resolve(data.result);
+                },
+                function(error){
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        };
+
         this.getBlogPosts = function getBlogPosts(count) {
             if (!count) {
                 count = 5;

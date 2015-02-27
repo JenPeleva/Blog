@@ -13,6 +13,18 @@
 
             <div ng-bind-html="post.Content | sanitize">
             </div>
+            <ul>
+            <li ng-repeat="comment in post.Comments track by $index">
+                {{ comment.Comment }} by {{ comment.Author }}
+            </li>   
+        </ul>
+        <div>
+            Author: <br />
+            <input type="text" ng-model="newCommentAuthor"/> <br />
+            Comment: <br />
+            <textarea ng-model="newCommentPost"/><br />
+            <input type="button" value="add comment" ng-click="addComment()" />
+        </div>
 
             <ul class="post-tags list-horizontal" style="display:none;">
                 <li ng-repeat="tag in post.Tags">
@@ -25,4 +37,5 @@
           <a class="article-links" href="#">&mdash; All articles</a>
      </div>
      <div class="col-md-3"></div>
+
 </div>

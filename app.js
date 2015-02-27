@@ -4,14 +4,28 @@
 // Declare app level module which depends on filters, and services
 var app = angular.module('blogApp', [
   'ngRoute',
+  'ui.router',
   'blogApp.home',
   'blogApp.details',
   'blogApp.search',
   'blogApp.aboutme',
   'blogApp.quotes'
 ]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/home'});
+config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise("home");
+
+  $stateProvider
+    .state('home', {
+      url: "/home",
+      templateUrl: 'js/home/homeView.html',
+      controller: 'homeController'
+    })
+    .state('details', {
+      url: '/details/:url',
+      templateUrl: "js/details/detailsView.html",
+      controller: 'detailsController'
+    });
+
 }]);
 
 app.filter("sanitize", ['$sce', function($sce) {
@@ -21,8 +35,8 @@ app.filter("sanitize", ['$sce', function($sce) {
 }]);
 
 app.run(function($route, $rootScope) {
-    $rootScope.$on('$routeChangeSuccess', function(event, next, current) {
-      var bannerClass = next.$$route.controller == 'homeController' ? 'banner' : 'banner-small'; // only the home page should have the big header picture
+    $rootScope.$on('$stateChangeSuccess', function(event, next, current) {
+      var bannerClass = next.controller == 'homeController' ? 'banner' : 'banner-small'; // only the home page should have the big header picture
       document.getElementById('headerPic').className = bannerClass;
   });
 });
