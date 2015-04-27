@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 article-avatar">
         
         <img src="css/Images/thmb-default.jpg" alt="thmb-default">
         
@@ -11,26 +11,48 @@
          <article class="media">
             <h1 class="media-heading">{{ post.Title }}</h1>
 
-            <div ng-bind-html="post.Content | sanitize">
+            <div class="article-content" ng-bind-html="post.Content | sanitize">
             </div>
-            <ul>
-            <li ng-repeat="comment in post.Comments track by $index">
-                {{ comment.Comment }} by {{ comment.Author }}
-            </li>   
-        </ul>
-        <div>
-            Author: <br />
-            <input type="text" ng-model="newCommentAuthor"/> <br />
-            Comment: <br />
-            <textarea ng-model="newCommentPost"/><br />
-            <input type="button" value="add comment" ng-click="addComment()" />
-        </div>
 
-            <ul class="post-tags list-horizontal" style="display:none;">
-                <li ng-repeat="tag in post.Tags">
-                    {{ tag }}
-                </li>
-             </ul>
+            <section class="comments-list">
+              <h2>Comments:</h2>
+
+                <article ng-repeat="comment in post.Comments track by $index">
+                    <footer class="text-muted">
+                      &mdash; by {{ comment.Author }}, on {{ comment.Date | date:"MM/dd/yyyy 'at' h:mma" }}
+                    </footer>
+                    <p>{{ comment.Comment }} </p>
+                </article>   
+            </section>
+
+            <section class="comments-form">
+              <h2>Leave a comment:</h2>
+                <div class="row">
+                  <div class="col-xs-12 col-md-8">
+
+                    <div class="form-group">
+                       <label for="author">Author</label>
+                       <input type="text" id="author" ng-model="newCommentAuthor" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                       <label for="author">Comment</label>
+                       <textarea ng-model="newCommentPost"  class="form-control"/>
+                    </div>
+
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-default" ng-click="addComment()" >Add comment</button>
+            </section>
+
+            <footer>
+              <ul class="post-tags list-horizontal" style="display:none;">
+                  <li ng-repeat="tag in post.Tags">
+                      {{ tag }}
+                  </li>
+               </ul>
+            </footer>
 
          </article>
 

@@ -11,7 +11,7 @@
         );
 
         $scope.addComment = function(){
-            var newComment = {'Author': $scope.newCommentAuthor,'Comment' : $scope.newCommentPost};
+            var newComment = {'Author': $scope.newCommentAuthor,'Comment' : $scope.newCommentPost, 'Date': new Date()} ;
 
             EverliveService.addNewComment($scope.post.Id, newComment).then(
                 function(result) {

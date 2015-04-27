@@ -8,7 +8,7 @@
     
     quotesApp.directive('quotes', function() {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: '/js/components/quotes/quotesView.html',
             controller: 'quotesController'
         };

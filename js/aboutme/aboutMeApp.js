@@ -11,6 +11,6 @@
     ]);
 
     aboutMeApp.controller('aboutMeController', function($scope, $routeParams, EverliveService) {
-        $scope.name = 'JEINA!';
+        $scope.name = 'Jen Peleva';
     });
 })();

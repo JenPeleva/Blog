@@ -24,6 +24,11 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
       url: '/details/:url',
       templateUrl: "js/details/detailsView.html",
       controller: 'detailsController'
+    })
+    .state('about', {
+      url: '/about-me',
+      templateUrl: 'js/aboutme/aboutMeView.html',
+      controller: 'aboutMeController'
     });
 
 }]);
