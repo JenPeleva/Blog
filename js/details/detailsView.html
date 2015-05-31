@@ -18,10 +18,10 @@
               <h2>Comments:</h2>
 
                 <article ng-repeat="comment in post.Comments track by $index">
+                    <p>{{ comment.Comment }} </p>
                     <footer class="text-muted">
                       &mdash; by {{ comment.Author }}, on {{ comment.Date | date:"MM/dd/yyyy 'at' h:mma" }}
                     </footer>
-                    <p>{{ comment.Comment }} </p>
                 </article>   
             </section>
 
