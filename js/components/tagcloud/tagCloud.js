@@ -15,7 +15,7 @@
     tagCloudApp.directive('tagCloud', function() {
         return {
             restrict: 'E',
-            templateUrl: '/js/components/tagCloud/tagCloudView.html',
+            templateUrl: '/js/components/tagcloud/tagCloudView.html',
             controller: 'tagCloudController'
         };
     });

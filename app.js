@@ -11,7 +11,9 @@ var app = angular.module('blogApp', [
   'blogApp.aboutme',
   'blogApp.quotes'
 ]).
-config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+	$locationProvider.hashPrefix('!');
+
   $urlRouterProvider.otherwise("home");
 
   $stateProvider
@@ -32,6 +34,31 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
     });
 
 }]);
+
+app.service('MetaInformationService', function() {
+	var metaDescription = '';
+	var metaKeywords = '';
+	return {
+		metaDescription: function() { return metaDescription; },
+		metaKeywords: function() { return metaKeywords; },
+		reset: function() {
+			metaDescription = '';
+			metaKeywords = '';
+		},
+		setMetaDescription: function(newMetaDescription) {
+			metaDescription = newMetaDescription;
+		},
+		appendMetaKeywords: function(newKeywords) {
+			for (var key in newKeywords) {
+				if (metaKeywords === '') {
+					metaKeywords += newKeywords[key].name;
+				} else {
+					metaKeywords += ', ' + newKeywords[key].name;
+				}
+			}
+		}
+	};
+});
 
 app.filter("sanitize", ['$sce', function($sce) {
   return function(htmlCode){

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="rows" infinite-scroll='loadBlogPosts()' infinite-scroll-disabled='isLoading' infinite-scroll-distance='2'>
 	<div class="col-md-9">
 		<article class="media" ng-repeat="bp in blogPosts">
 
@@ -9,7 +9,7 @@
 			</div>
 
 			<div class="media-body">
-				<a href="#/details/{{bp.Url}}"><h1 class="media-heading">{{bp.Title}}</h1></a>
+				<a ui-sref="details({url : bp.Url})"><h1 class="media-heading">{{bp.Title}}</h1></a>
 				<p class="text-muted">&mdash; {{ bp.Date | date: 'd MMMM yyyy'}}</p>
 				<p>{{ bp.Summary }} <!-- Summary --></p>
 			</div>

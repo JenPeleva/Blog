@@ -19,12 +19,12 @@
             return deferred.promise;
         };
 
-        this.getBlogPosts = function getBlogPosts(count) {
-            if (!count) {
-                count = 5;
+        this.getBlogPosts = function getBlogPosts(filter, take, skip) {            
+            if (!take) {
+                take = 5;
             }
             var query = new Everlive.Query();
-            query.orderDesc('Date').take(count);
+            query.where(filter).orderDesc('Date').skip(skip).take(take);
 
             var deferred = $q.defer();
             blogPostData.get(query).then(function(data) { 
@@ -60,9 +60,12 @@
             return deferred.promise;
         };
 
-        this.getBlogPostByTag = function getBlogPostByTag(tag) {
+        this.getBlogPostByTag = function getBlogPostByTag(tag, take, skip) {
+            if (!take) {
+                take = 5;
+            }
             var query = new Everlive.Query();
-            query.where({Tags: tag}).orderDesc('Date');
+            query.where({Tags: tag}).orderDesc('Date').skip(skip).take(take);;
 
             var deferred = $q.defer();
             blogPostData.get(query).then(function(data) { 
