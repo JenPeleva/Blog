@@ -15,7 +15,7 @@ body
 
 h1, .h1 {
 
-	font-size: 44px;
+	font-size: 35px;
 }
 article {
 	margin-bottom: 40px;
@@ -28,7 +28,8 @@ a:hover, a:focus, a:active {
 	text-decoration: none;
 }
 
-p {
+p, .p1 {
+	margin-bottom: 30px;
 	font-family: Arial, sans-serif;
 }
 
@@ -94,17 +95,30 @@ section {
 .main .media-left,.main .media>.pull-left {
 	padding-right: 40px;
 }
-.article-links
- {
- 	color: #ff3e64;
- }
-
 .main a:hover,.main a:focus,.main a:active {
  color: #ff3e64;
 }
+/*Article content*/
 
-/*Content*/
-
+.article-content img
+{
+   max-width: 100%;
+}
+.article-links
+{
+ 	color: #ff3e64;
+}
+.post-image
+{
+	position: relative;
+}
+.post-image-description
+{
+	position: absolute;
+	top: 0;
+	right: -245px;
+	width: 220px;
+}
 /*Profile*/
 .profile-pic {
 	text-align:center;
