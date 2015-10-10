@@ -7,7 +7,8 @@
                 $scope.post = result;
                 $scope.post.Comments = $scope.post.Comments || [];
                 $window.document.title = result.Title;
-                MetaInformationService.setMetaDescription('this is from details');
+                MetaInformationService.setMetaDescription(result.MetaDescription);
+                MetaInformationService.setMetaKeywords(result.MetaKeywords);
             },
             function() {}
         );
