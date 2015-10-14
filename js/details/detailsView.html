@@ -14,7 +14,7 @@
             <div class="article-content" ng-bind-html="post.Content | sanitize">
             </div>
 
-            <section class="comments-list">
+            <!-- <section class="comments-list">
               <h2>Comments:</h2>
 
                 <article ng-repeat="comment in post.Comments track by $index">
@@ -44,7 +44,23 @@
                 </div>
 
                 <button type="button" class="btn btn-default" ng-click="addComment()" >Add comment</button>
-            </section>
+            </section> -->
+			
+			<section>
+				<div id="disqus_thread"></div>
+				<script type="text/javascript">
+					/* * * CONFIGURATION VARIABLES * * */
+					var disqus_shortname = 'rougesprit';
+					
+					/* * * DON'T EDIT BELOW THIS LINE * * */
+					(function() {
+						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+						dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			</section>
 
             <footer>
               <ul class="post-tags list-horizontal" style="display:none;">
