@@ -99,7 +99,9 @@ section {
  color: #ff3e64;
 }
 /*Article content*/
-
+.article-title {
+	font-size: 50px;
+}
 .article-content img
 {
    max-width: 100%;
