@@ -5,6 +5,21 @@
         var el = new Everlive('fW5fEkhhplSXgaCS');
         var blogPostData = el.data('BlogPost');
         var tagsData = el.data('Tags');
+        var quotesData = el.data('Quotes');
+
+        this.getLastQuote = function getLastQuote(){
+            var query = new Everlive.Query();
+            query.orderDesc('CreatedAt').take(1);
+
+            var deferred = $q.defer();
+            quotesData.get(query).then(function(data) { 
+                    deferred.resolve(data.result);
+                },
+                function(error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        };
 
 
         this.addNewComment = function addNewComment(blogPostId, newComment){
