@@ -7,6 +7,14 @@
         var tagsData = el.data('Tags');
         var quotesData = el.data('Quotes');
 
+        this.resizeImages = function resizeImages(){
+            var deferred = $q.defer();
+            el.helpers.html.processAll().then(function (results) {
+                deferred.resolve(results);
+            });
+            return deferred.promise;
+        }
+
         this.getLastQuote = function getLastQuote(){
             var query = new Everlive.Query();
             query.orderDesc('CreatedAt').take(1);
