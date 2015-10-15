@@ -2,7 +2,10 @@
     var blogAppServices = angular.module('blogApp.services', []);
     blogAppServices.service('EverliveService', function($q) {
         var self = this;
-        var el = new Everlive('fW5fEkhhplSXgaCS');
+        var el = new Everlive({ 
+            apiKey : 'fW5fEkhhplSXgaCS',
+            caching: true
+        });
         var blogPostData = el.data('BlogPost');
         var tagsData = el.data('Tags');
         var quotesData = el.data('Quotes');
