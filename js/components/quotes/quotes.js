@@ -1,11 +1,16 @@
 (function() {
 
-    var quotesApp = angular.module('blogApp.quotes', [ 'blogApp.services']);
+    var quotesApp = angular.module('blogApp.quotes', ['blogApp.services']);
 
     quotesApp.controller('quotesController', function($scope, EverliveService) {
-     	    $scope.quote = 'Always do your best. What you plant now, you will harvest later.';
+        EverliveService.getLastQuote().then(
+            function(result) {
+                $scope.quote = result[0].Quote;
+            },
+            function() {}
+        );
     });
-    
+
     quotesApp.directive('quotes', function() {
         return {
             restrict: 'A',
