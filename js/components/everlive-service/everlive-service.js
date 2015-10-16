@@ -2,10 +2,21 @@
     var blogAppServices = angular.module('blogApp.services', []);
     blogAppServices.service('EverliveService', function($q) {
         var self = this;
-        var el = new Everlive('fW5fEkhhplSXgaCS');
+        var el = new Everlive({ 
+            apiKey : 'fW5fEkhhplSXgaCS',
+            caching: true
+        });
         var blogPostData = el.data('BlogPost');
         var tagsData = el.data('Tags');
         var quotesData = el.data('Quotes');
+
+        this.resizeImages = function resizeImages(){
+            var deferred = $q.defer();
+            el.helpers.html.processAll().then(function (results) {
+                deferred.resolve(results);
+            });
+            return deferred.promise;
+        }
 
         this.getLastQuote = function getLastQuote(){
             var query = new Everlive.Query();

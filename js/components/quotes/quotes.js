@@ -6,6 +6,7 @@
         EverliveService.getLastQuote().then(
             function(result) {
                 $scope.quote = result[0].Quote;
+                $scope.author = result[0].Author;
             },
             function() {}
         );

@@ -1,7 +1,7 @@
 (function() {
     var detailsApp = angular.module('blogApp.details', ['ngRoute', 'blogApp.services']);
 
-    detailsApp.controller('detailsController', function($window, $scope, $stateParams, EverliveService, MetaInformationService) {        
+    detailsApp.controller('detailsController', function($window, $scope, $stateParams, EverliveService, MetaInformationService,$timeout) {        
         EverliveService.getBlogPostByUrl($stateParams.url).then(
             function(result) {
                 $scope.post = result;
@@ -9,6 +9,11 @@
                 $window.document.title = result.Title;
                 MetaInformationService.setMetaDescription(result.MetaDescription);
                 MetaInformationService.setMetaKeywords(result.MetaKeywords);
+                $timeout(function(){
+                    EverliveService.resizeImages().then(function(result){
+                    });
+                }, 0);
+
             },
             function() {}
         );
