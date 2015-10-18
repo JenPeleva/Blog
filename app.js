@@ -9,9 +9,10 @@ var app = angular.module('blogApp', [
   'blogApp.details',
   'blogApp.search',
   'blogApp.aboutme',
-  'blogApp.quotes'
+  'blogApp.quotes',
+  'angular-google-analytics'
 ]).
-config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+config(['$stateProvider', '$urlRouterProvider','$locationProvider','AnalyticsProvider', function($stateProvider, $urlRouterProvider, $locationProvider, AnalyticsProvider) {
 	$locationProvider.hashPrefix('!');
 
   $urlRouterProvider.otherwise("home");
@@ -32,6 +33,11 @@ config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($st
       templateUrl: 'js/aboutme/aboutMeView.html',
       controller: 'aboutMeController'
     });
+
+    AnalyticsProvider
+    .setAccount('UA-68946344-1')
+    .setPageEvent('$stateChangeSuccess');
+
 
 }]);
 
@@ -69,7 +75,7 @@ app.filter("sanitize", ['$sce', function($sce) {
   }
 }]);
 
-app.run(function($route, $rootScope) {
+app.run(function($route, $rootScope, Analytics) {
     $rootScope.$on('$stateChangeSuccess', function(event, next, current) {
       var bannerClass = next.controller == 'homeController' || next.controller == 'aboutMeController' ? 'banner' : 'banner-small'; // only the home page should have the big header picture
       document.getElementById('headerPic').className = bannerClass;
