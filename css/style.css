@@ -106,6 +106,10 @@ section {
 {
    max-width: 100%;
 }
+.article-content a
+{
+   text-decoration: underline;
+}
 .article-links
 {
  	color: #ff3e64;
