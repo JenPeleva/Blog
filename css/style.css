@@ -116,6 +116,7 @@ section {
 }
 .post-image-description
 {
+	display: block;
 	position: absolute;
 	top: 0;
 	right: -245px;
@@ -172,7 +173,7 @@ blockquote {
 	font-size: 16px;
 }
 .quote-author {
-	margin-top: 6px; 
+	margin-top: 6px;
 	text-align: right;
 }
 /*About me page*/
@@ -270,4 +271,22 @@ margin-top: 15px; }
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+/*Responsive design*/
+
+@media only screen and (max-width: 768px) {
+
+	.post-image
+	{
+		position: static;
+	}
+	.post-image-description
+	{
+		margin-top: 10px;
+		position: static;
+		width: auto;
+		font-size: 14px;
+	}
+
 }
