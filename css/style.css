@@ -32,7 +32,10 @@ p, .p1 {
 	margin-bottom: 30px;
 	font-family: Arial, sans-serif;
 }
-
+.p2 
+{
+	margin-bottom: 15px;
+}
 /*Bootstrap*/
 
 .btn.btn-default{
@@ -125,6 +128,10 @@ section {
 	top: 0;
 	right: -245px;
 	width: 220px;
+	color: #999;
+}
+.post-image-description a 
+{
 	color: #999;
 }
 /*Profile*/
