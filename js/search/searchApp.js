@@ -14,7 +14,7 @@
         }
     ]);
 
-    searchApp.controller('searchController', function($scope, $routeParams, EverliveService) {
+    searchApp.controller('searchController',["$scope", "$routeParams", "EverliveService", function($scope, $routeParams, EverliveService) {
         var tag = $routeParams.tag;
         EverliveService.getBlogPostByTag(tag).then(
             function(result) {
@@ -22,9 +22,9 @@
             },
             function() {}
         );
-    });
+    }]);
 
-    searchApp.controller('archiveController', function($scope, $routeParams, EverliveService) {
+    searchApp.controller('archiveController',["$scope", "$routeParams", "EverliveService", function($scope, $routeParams, EverliveService) {
         var month = $routeParams.month;
         EverliveService.getBlogPostsByMonth(month).then(
             function(result) {
@@ -32,5 +32,5 @@
             },
             function() {}
         );
-    });
+    }]);
 })();

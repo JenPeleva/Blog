@@ -116,6 +116,7 @@ UpgradeLog*.XML
 
 #NPM directory
 node_modules
+node_modules/*
 
 #Bower directory
 bower_components

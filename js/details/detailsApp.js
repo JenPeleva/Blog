@@ -1,7 +1,7 @@
 (function() {
     var detailsApp = angular.module('blogApp.details', ['ngRoute', 'blogApp.services', 'angularUtils.directives.dirDisqus']);
 
-    detailsApp.controller('detailsController', function($window, $scope, $stateParams, EverliveService, MetaInformationService,$timeout,$rootScope) {        
+    detailsApp.controller('detailsController', [ "$window", "$scope", "$stateParams", "EverliveService", "MetaInformationService","$timeout","$rootScope", function($window, $scope, $stateParams, EverliveService, MetaInformationService,$timeout,$rootScope) {        
         $scope.contentLoaded = false;
         EverliveService.getBlogPostByUrl($stateParams.url).then(
             function(result) {
@@ -38,5 +38,5 @@
         $scope.toggleComments = function(){
             $scope.expanded =  !$scope.expanded ? true: false;
         }
-    });    
+    }]);    
 })();
