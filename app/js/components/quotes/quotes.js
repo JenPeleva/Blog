@@ -15,7 +15,7 @@
     quotesApp.directive('quotes', function() {
         return {
             restrict: 'A',
-            templateUrl: '/js/components/quotes/quotesView.html',
+            templateUrl: 'js/components/quotes/quotesView.html',
             controller: 'quotesController'
         };
     });
