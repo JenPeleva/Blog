@@ -1,62 +1,64 @@
-(function() {
-    var blogAppServices = angular.module('blogApp.services', []);
-    blogAppServices.service('EverliveService',["$q",  function($q) {
+(function () {
+    var blogAppServices = angular.module('blogApp.services', ['kinvey']);
+    blogAppServices.service('KinveyService', ['$kinvey', '$q', function ($kinvey, $q) {
         var self = this;
-        var el = new Everlive({ 
-            apiKey : 'fW5fEkhhplSXgaCS',
-            caching: true
-        });
-        var blogPostData = el.data('BlogPost');
-        var tagsData = el.data('Tags');
-        var quotesData = el.data('Quotes');
+        var blogPostData = $kinvey.DataStore.collection('BlogPost');;
+        var tagsData = $kinvey.DataStore.collection('Tags');
+        var quotesData = $kinvey.DataStore.collection('Quotes');
 
-        this.resizeImages = function resizeImages(){
-            var deferred = $q.defer();
-            el.helpers.html.processAll().then(function (results) {
-                deferred.resolve(results);
-            });
-            return deferred.promise;
-        }
+        // this.resizeImages = function resizeImages(){
+        //     var deferred = $q.defer();
+        //     el.helpers.html.processAll().then(function (results) {
+        //         deferred.resolve(results);
+        //     });
+        //     return deferred.promise;
+        // }
 
-        this.getLastQuote = function getLastQuote(){
-            var query = new Everlive.Query();
-            query.orderDesc('CreatedAt').take(1);
+        this.getLastQuote = function getLastQuote() {
+            var query = new $kinvey.Query();
+            query.descending('CreatedAt');
 
             var deferred = $q.defer();
-            quotesData.get(query).then(function(data) { 
-                    deferred.resolve(data.result);
-                },
-                function(error) {
+            quotesData.find(query).toPromise().then(function (data) {
+                deferred.resolve(data);
+            },
+                function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
         };
 
 
-        this.addNewComment = function addNewComment(blogPostId, newComment){
+        this.addNewComment = function addNewComment(blogPostId, newComment) {
             var deferred = $q.defer();
-            blogPostData.rawUpdate({'$push' : {'Comments' :  newComment }}, { 'Id': blogPostId},
-                function(data){
-                    deferred.resolve(data.result);
-                },
-                function(error){
-                    deferred.reject(error);
-                });
+            blogPostData.save({ '_id': blogPostId, 'Comments': newComment })
+            .then(function (data) {
+                deferred.resolve(data);
+                }
+            )
+            .catch(function (error) {
+                deferred.reject(error);
+                }
+            );
             return deferred.promise;
         };
 
-        this.getBlogPosts = function getBlogPosts(filter, take, skip) {            
+        this.getBlogPosts = function getBlogPosts(filter, take, skip) {
             if (!take) {
                 take = 5;
             }
-            var query = new Everlive.Query();
-            query.where(filter).orderDesc('Date').skip(skip).take(take);
+            var query = new $kinvey.Query();
+            query.descending('Date');
+            query.skip = skip;
+            query.take = take;
+
+            // query.where(filter).orderDesc('Date').skip(skip).take(take);
 
             var deferred = $q.defer();
-            blogPostData.get(query).then(function(data) { 
-                    deferred.resolve(data.result);
-                },
-                function(error) {
+            blogPostData.find(query).toPromise().then(function (data) {
+                deferred.resolve(data);
+            },
+                function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -64,12 +66,12 @@
 
         this.getBlogPostByUrl = function getBlogPostByUrl(url) {
             var deferred = $q.defer();
-            blogPostData.get({
-                Url: url
-            }).then(function(data) { 
-                    deferred.resolve(data.result[0]);
-                },
-                function(error) {
+            var query = new $kinvey.Query();
+            query.equalTo('Url', url);
+            blogPostData.find(query).toPromise().then(function (data) {
+                deferred.resolve(data[0]);
+            },
+                function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -77,10 +79,10 @@
 
         this.addNewBlogPost = function addNewBlogPost(blogPost) {
             var deferred = $q.defer();
-            blogPostData.create(blogPost).then(function(data) { 
-                    deferred.resolve(data);
-                },
-                function(error) {
+            blogPostData.save(blogPost).toPromise().then(function (data) {
+                deferred.resolve(data);
+            },
+                function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -90,14 +92,18 @@
             if (!take) {
                 take = 5;
             }
-            var query = new Everlive.Query();
-            query.where({Tags: tag}).orderDesc('Date').skip(skip).take(take);;
+            var query = new $kinvey.Query();
+            query.take = take;
+            query.skip = skip;
+            query.descending('Date');
+            query.contains('Tags', tag);
+            // query.where({Tags: tag}).orderDesc('Date').skip(skip).take(take);;
 
             var deferred = $q.defer();
-            blogPostData.get(query).then(function(data) { 
-                    deferred.resolve(data.result);
-                },
-                function(error) {
+            blogPostData.find(query).toPromise().then(function (data) {
+                deferred.resolve(data);
+            },
+                function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -105,29 +111,31 @@
 
         this.getBlogPostsArchive = function getBlogPostsArchive() {
 
-            var query = new Everlive.Query();
-            query.orderDesc('Date').select('Title', 'Url', 'Archive');
+            var query = new $kinvey.Query();
+            query.descending('Date');
+            query.fields = ['Title', 'Url', 'Archive'];
+            // query.orderDesc('Date').select('Title', 'Url', 'Archive');
 
             var deferred = $q.defer();
-            blogPostData.get(query).then(function(data) { 
-                    var archivedData = self._buildArchiveData(data.result);
-                    deferred.resolve(archivedData);
-                },
-                function(error) {
+            blogPostData.get(query).toPromise().then(function (data) {
+                var archivedData = self._buildArchiveData(data);
+                deferred.resolve(archivedData);
+            },
+                function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
         };
 
         this.getBlogPostsByMonth = function getBlogPostsByMonth(month) {
-            var query = new Everlive.Query();
-            query.where().regex('Archive', month, 'i');
+            var query = new $kinvey.Query();
+            query.matches('Archive', month);
 
             var deferred = $q.defer();
-            blogPostData.get(query).then(function(data) { 
-                    deferred.resolve(data.result);
-                },
-                function(error) {
+            blogPostData.get(query).toPromise().then(function (data) {
+                deferred.resolve(data);
+            },
+                function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -146,15 +154,15 @@
         };
 
         this.getTags = function getTags() {
-            var query = new Everlive.Query();
-            query.orderDesc('Counter');
+            var query = new $kinvey.Query();
+            query.descending('Counter');
 
             var deferred = $q.defer();
-            tagsData.get().then(function(data) { 
-                    var tags = self._buildTagsCss(data.result);
-                    deferred.resolve(tags);
-                },
-                function(error) {
+            tagsData.find(query).toPromise().then(function (data) {
+                var tags = self._buildTagsCss(data);
+                deferred.resolve(tags);
+            },
+                function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -178,7 +186,6 @@
                 }
             };
             return result;
-
         };
     }]);
 })();

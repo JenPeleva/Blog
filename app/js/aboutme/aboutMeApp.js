@@ -10,7 +10,7 @@
         }
     ]);
 
-    aboutMeApp.controller('aboutMeController',["$scope", "$routeParams", "EverliveService", function($scope, $routeParams, EverliveService) {
+    aboutMeApp.controller('aboutMeController',["$scope", "$routeParams", "KinveyService", function($scope, $routeParams, KinveyService) {
         $scope.name = 'Jen Peleva';
     }]);
 })();

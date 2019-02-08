@@ -2,8 +2,8 @@
 
     var archiveApp = angular.module('blogApp.archive', [ 'blogApp.services']);
 
-    archiveApp.controller('archiveWidgetController',["$scope", "EverliveService", function($scope, EverliveService) {
-       	EverliveService.getBlogPostsArchive().then(
+    archiveApp.controller('archiveWidgetController',["$scope", "KinveyService", function($scope, KinveyService) {
+       	KinveyService.getBlogPostsArchive().then(
           function(result) { 
                 $scope.postsArchive = result;
           },

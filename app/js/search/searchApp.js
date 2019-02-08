@@ -14,9 +14,9 @@
         }
     ]);
 
-    searchApp.controller('searchController',["$scope", "$routeParams", "EverliveService", function($scope, $routeParams, EverliveService) {
+    searchApp.controller('searchController',["$scope", "$routeParams", "KinveyService", function($scope, $routeParams, KinveyService) {
         var tag = $routeParams.tag;
-        EverliveService.getBlogPostByTag(tag).then(
+        KinveyService.getBlogPostByTag(tag).then(
             function(result) {
                 $scope.blogPosts = result;
             },
@@ -24,9 +24,9 @@
         );
     }]);
 
-    searchApp.controller('archiveController',["$scope", "$routeParams", "EverliveService", function($scope, $routeParams, EverliveService) {
+    searchApp.controller('archiveController',["$scope", "$routeParams", "KinveyService", function($scope, $routeParams, KinveyService) {
         var month = $routeParams.month;
-        EverliveService.getBlogPostsByMonth(month).then(
+        KinveyService.getBlogPostsByMonth(month).then(
             function(result) {
                 $scope.blogPosts = result;
             },

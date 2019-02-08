@@ -2,8 +2,8 @@
 
     var quotesApp = angular.module('blogApp.quotes', ['blogApp.services']);
 
-    quotesApp.controller('quotesController',["$scope", "EverliveService", function($scope, EverliveService) {
-        EverliveService.getLastQuote().then(
+    quotesApp.controller('quotesController',["$scope", "KinveyService", function($scope, KinveyService) {
+        KinveyService.getLastQuote().then(
             function(result) {
                 $scope.quote = result[0].Quote;
                 $scope.author = result[0].Author;

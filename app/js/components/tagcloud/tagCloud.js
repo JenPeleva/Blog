@@ -2,8 +2,8 @@
 
     var tagCloudApp = angular.module('blogApp.tagCloud', [ 'blogApp.services']);
 
-    tagCloudApp.controller('tagCloudController',["$scope", "EverliveService", function($scope, EverliveService) {
-       	EverliveService.getTags().then(
+    tagCloudApp.controller('tagCloudController',["$scope", "KinveyService", function($scope, KinveyService) {
+       	KinveyService.getTags().then(
           function(result) { 
             $scope.tags = result;
           },
