@@ -82,16 +82,16 @@ app.filter("sanitize", ['$sce', function ($sce) {
 }]);
 
 app.run(function ($route, $rootScope, Analytics, $kinvey) {
-  if(!$kinvey.User.getActiveUser()) {
-    $kinvey.User.login('admin2', 'ViysXEyVDzBJjCTHgyexB8cU')
-    .then(function() {
-      console.log('Login successful');
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  }
   $rootScope.$on('$stateChangeSuccess', function (event, next, current) {
+    if(!$kinvey.User.getActiveUser()) {
+      $kinvey.User.login('admin2', 'ViysXEyVDzBJjCTHgyexB8cU')
+      .then(function() {
+        console.log('Login successful');
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
     var bannerClass = next.controller == 'homeController' || next.controller == 'aboutMeController' ? 'banner' : 'banner-small'; // only the home page should have the big header picture
     document.getElementById('headerPic').className = bannerClass;
   });
